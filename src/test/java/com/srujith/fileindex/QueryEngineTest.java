@@ -43,7 +43,7 @@ public class QueryEngineTest {
     @Test
     public void shouldReturnIndexOfStringAsFileName() {
         List<String> actualList = queryEngine.query("subdeacon");
-        List<String> expectedList = Arrays.asList("sample1.txt");
+        List<String> expectedList = Arrays.asList("magna-carta.txt");
         assertEquals(expectedList, actualList);
     }
 
