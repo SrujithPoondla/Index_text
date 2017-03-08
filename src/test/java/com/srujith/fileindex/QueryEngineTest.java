@@ -10,12 +10,13 @@ import static org.junit.Assert.*;
 
 
 public class QueryEngineTest {
-    QueryEngine queryEngine;
-    Map<File, Trie> dataEngine;
+    private QueryEngine queryEngine;
+    private Map<File, Trie> dataEngine;
 
     @Before
     public void setUp() throws Exception {
-        List<String> inputStringList = new ArrayList<>();
+        List<String> inputStringList;
+        inputStringList = new ArrayList<>();
         inputStringList.add("Lord of the Rings");
 
         inputStringList.add("Westminster");
@@ -31,5 +32,20 @@ public class QueryEngineTest {
         }
         queryEngine = new QueryEngine(dataEngine);
     }
+
+    @Test
+    public void shouldReturnIndexOfStringAsNull() {
+        List<String> expected = new ArrayList<>();
+        List<String> actualList = queryEngine.query("Srujith");
+        assertEquals(expected, actualList);
+    }
+
+    @Test
+    public void shouldReturnIndexOfStringAsFileName() {
+        List<String> actualList = queryEngine.query("subdeacon");
+        List<String> expectedList = Arrays.asList("sample1.txt");
+        assertEquals(expectedList, actualList);
+    }
+
 
 }

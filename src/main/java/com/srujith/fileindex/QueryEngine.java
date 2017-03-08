@@ -29,14 +29,21 @@ class QueryEngine {
         int x = 0;
         for (final Map.Entry<File, Trie> entry : dataBase.entrySet()
                 ) {
-            new Thread("" + x) {
+            Thread t1 = new Thread("" + x) {
                 public void run() {
                     if ((entry.getValue()).contains(str)) {
                         queryResult.add(entry.getKey().getName());
                     }
 
                 }
-            }.start();
+            };
+
+            t1.start();
+            try {
+                t1.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             x = x + 1;
         }
         return queryResult;

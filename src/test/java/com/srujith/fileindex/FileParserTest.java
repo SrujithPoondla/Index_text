@@ -15,32 +15,34 @@ public class FileParserTest {
     File folder;
     Map<File, Trie> dataEngine;
 
-    @Before
-    public void setUp() throws Exception {
-        folder = new File("/Users/srujithpoondla/IdeaProjects/fileindex/src/main/resources");
-        parser = new FileParser();
-        parser.startParsing(folder);
-    }
-
 
     @Test
     public void shouldPrintNoFilesInDirectory() {
+        folder = new File("src/main/resources");
         parser = new FileParser();
-        List<File> actual = parser.getListOfFiles(folder);
+        parser.startParsing(folder);
 
+        List<File> actual = parser.getListOfFiles(folder);
         assertNull(actual);
     }
 
     @Test
     public void shouldReturnIndexOfStringAsNull() {
+        folder = new File("src/main/resources");
+        parser = new FileParser();
+        parser.startParsing(folder);
+
         assertNull(parser.query("ZEBRA"));
     }
 
     @Test
     public void shouldReturnIndexOfStringAsFileName() {
+        folder = new File("src/main/resources");
+        parser = new FileParser();
+        parser.startParsing(folder);
+
         List<String> actualList = parser.query("Westminster");
         List<String> expectedList = Arrays.asList("sample1.txt");
-
         assertEquals(expectedList, actualList);
     }
 

@@ -8,17 +8,16 @@ import java.util.List;
  * It takes only characters other than these mentioned characters "[\s\ .,--?:")*(]"
  */
 class Trie {
-    private int curr;
-    private List<Node> nodes = new ArrayList<Node>();
-    private List<String> allDistinctWords;
+    private int currIndex;
+    private List<Node> trieNodes = new ArrayList<Node>();
     public final static int NULL = -1;
 
     /**
-     * Initializes a new Node to the list of nodes.
+     * Initializes a new Node to the list of trieNodes.
      */
     public Trie() {
-        nodes.add(new Node());
-        curr = 1;
+        trieNodes.add(new Node());
+        currIndex = 1;
     }
 
     /**
@@ -28,34 +27,6 @@ class Trie {
      */
     private int getIndex(char c) {
         return (int) (c);
-    }
-
-    /**
-     * Its a recursive method to search for the current string in the trie
-     * @param x index of the character in the Trie
-     * @param currWord String to search in the Trie
-     */
-    private void depthSearchWord(int x, String currWord) {
-        for (int i = 0; i < 255; i++) {
-            int p = nodes.get(x).next[i];
-            if (p != NULL) {
-                String word = currWord + (char) (i);
-                if (nodes.get(p).wordCount > 0) {
-                    allDistinctWords.add(word);
-                }
-                depthSearchWord(p, word);
-            }
-        }
-    }
-
-    /**
-     * To get all the distinct words in the indexed Trie
-     * @return all the distinct words in the Trie as list
-     */
-    public List<String> getAllDistinctWords() {
-        allDistinctWords = new ArrayList<String>();
-        depthSearchWord(0, "");
-        return allDistinctWords;
     }
 
     /**
@@ -69,13 +40,12 @@ class Trie {
         int p = 0;
         for (int i = 0; i < len; i++) {
             int j = getIndex(str.charAt(i));
-            if (nodes.get(p).next[j] == NULL) {
+            if (trieNodes.get(p).next[j] == NULL) {
                 return false;
             }
-            p = nodes.get(p).next[j];
-
+            p = trieNodes.get(p).next[j];
         }
-        return nodes.get(p).wordCount > 0;
+        return trieNodes.get(p).wordCount > 0;
 
     }
 
@@ -89,17 +59,15 @@ class Trie {
         for (int i = 0; i < len; i++) {
             int j = getIndex(str.charAt(i));
             if (j != -1) {
-                if (nodes.get(p).next[j] == NULL) {
-                    nodes.add(curr, new Node());
-                    nodes.get(p).next[j] = curr;
-                    curr++;
+                if (trieNodes.get(p).next[j] == NULL) {
+                    trieNodes.add(currIndex, new Node());
+                    trieNodes.get(p).next[j] = currIndex;
+                    currIndex++;
                 }
-                p = nodes.get(p).next[j];
-
+                p = trieNodes.get(p).next[j];
             }
-
         }
-        nodes.get(p).wordCount++;
+        trieNodes.get(p).wordCount++;
     }
 
 }

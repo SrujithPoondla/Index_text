@@ -47,10 +47,12 @@ public class FileParser {
      */
     public List<String> query(String str) {
         search = new QueryEngine(dataEngine);
-        if (search.query(str).isEmpty()) {
+        List<String> res;
+        res = search.query(str);
+        if (res.isEmpty()) {
             return null;
         } else {
-            return search.query(str);
+            return res;
         }
     }
 
