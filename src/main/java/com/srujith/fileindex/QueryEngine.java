@@ -6,15 +6,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by srujithpoondla on 3/7/17.
+ * To search for the index of the word using QueryEngine
  */
 class QueryEngine {
     private Map<File, Trie> dataBase;
 
+    /**
+     * Initialize the database to the QueryEngine
+     * @param dataBase Map of the files and their index
+     */
     public QueryEngine(Map<File, Trie> dataBase) {
         this.dataBase = dataBase;
     }
 
+    /**
+     * Query the String in the given directory
+     * @param str String to query
+     * @return List of files in which the given word is present
+     */
     public List<String> query(String str) {
         final List<String> queryResult = new ArrayList<>();
         int x = 0;
