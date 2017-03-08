@@ -3,7 +3,7 @@ package com.srujith.fileindex;
 /**
  * Node in a Trie
  */
-public class Node {
+class Node {
     public final static int NULL = -1;
     public int[] next = new int[255];
     public int wordCount;

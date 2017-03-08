@@ -6,9 +6,8 @@ import java.util.*;
 /**
  * Class to maintain information of file and its index.
  */
-public class FileParser {
-    Map<File, Trie> dataEngine;
-    QueryEngine search;
+class FileParser {
+    private Map<File, Trie> dataEngine;
 
     /**
      * Gets the list of files in the directory to populate the file - index map.
@@ -31,8 +30,7 @@ public class FileParser {
      * @return List of files in the directory; null if the directory is empty.
      */
     public List<File> getListOfFiles(File file) {
-        List<File> listOfFiles;
-        listOfFiles = Arrays.asList(file.listFiles());
+        List<File> listOfFiles = Arrays.asList(file.listFiles());
         if (listOfFiles.size() == 0) {
             return null;
         } else {
@@ -46,7 +44,7 @@ public class FileParser {
      * @return List of files in which the query string is present.
      */
     public List<String> query(String str) {
-        search = new QueryEngine(dataEngine);
+        QueryEngine search = new QueryEngine(dataEngine);
         List<String> res;
         res = search.query(str);
         if (res.isEmpty()) {
