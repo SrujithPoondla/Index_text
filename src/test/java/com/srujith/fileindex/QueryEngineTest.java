@@ -15,13 +15,8 @@ public class QueryEngineTest {
 
     @Before
     public void setUp() throws Exception {
-        List<String> inputStringList;
-        inputStringList = new ArrayList<>();
-        inputStringList.add("Lord of the Rings");
-
-        inputStringList.add("Westminster");
         dataEngine = new HashMap<>();
-        File folder = new File("/Users/srujithpoondla/IdeaProjects/fileindex/src/main/resources");
+        File folder = new File("src/main/resources");
         File[] listOfFiles = folder.listFiles();
         Indexer indexer;
         Map<File, Trie> dataEngine = new HashMap<>();
